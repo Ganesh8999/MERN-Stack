@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./Header";
 import RomanceCards from "./RomanceCards";
-import SwipeButtons from "./SwipeButtons";
+import SwipeButtons from "./SwipeButtons ";
 
 function App() {
   return (
