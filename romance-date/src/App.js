@@ -1,5 +1,7 @@
 import "./App.css";
 import Header from "./Header";
+import RomanceCards from "./RomanceCards";
+import SwipeButtons from "./SwipeButtons";
 
 function App() {
   return (
@@ -7,8 +9,8 @@ function App() {
     <div className="app">
       {/* <h1>This is the dating app. </h1> */}
       <Header />
-      {/* Romance Cards */}
-      {/* SwipeButtons */}
+      <RomanceCards />
+      <SwipeButtons />
     </div>
   );
 }
