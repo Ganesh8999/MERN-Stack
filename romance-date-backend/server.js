@@ -1,5 +1,5 @@
 import express from "express";
-import mongoose from "mongoose";
+//import mongoose from "mongoose";
 
 //App Config
 const app = express();
