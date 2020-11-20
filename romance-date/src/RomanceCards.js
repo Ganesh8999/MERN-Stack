@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./RomanceCards.css";
 import TinderCard from "react-tinder-card";
+import axios from "./axios";
 
 function RomanceCards() {
-  const [people, setPeople] = useState([
-    {
-      name: "Tony Stark",
-      url:
-        "https://qph.fs.quoracdn.net/main-qimg-b6ee08984cd307f5ae86f39371dd1c07",
-    },
-    {
-      name: "Doctor Strange",
-      url:
-        "https://blogs-images.forbes.com/erikkain/files/2016/11/dr-strange.jpg",
-    },
-  ]);
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const req = await axios.get("/romance/cards");
+
+      setPeople(req.data);
+    }
+    fetchData();
+  }, []);
+
+  // console.log(people);
 
   const swiped = (direction, nameToDelete) => {
     console.log("removing : " + nameToDelete);
@@ -39,7 +40,7 @@ function RomanceCards() {
           >
             <div
               className="card"
-              style={{ backgroundImage: `url( ${person.url})` }}
+              style={{ backgroundImage: `url( ${person.imgUrl})` }}
             >
               {person.name}
             </div>

@@ -1,5 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
+import Cards from "./dbCards.js";
+import Cors from "cors";
 
 //App Config
 const app = express();
@@ -7,6 +9,8 @@ const port = process.env.port || 8001;
 const connection_url = `mongodb+srv://admin:s0HLm47uyJezvoAV@romancedatecluster.agwfe.mongodb.net/<romancedatedb>?retryWrites=true&w=majority`;
 
 // Middlewares
+app.use(express.json());
+app.use(Cors());
 
 //DB Config
 mongoose.connect(connection_url, {
@@ -16,6 +20,31 @@ mongoose.connect(connection_url, {
 });
 
 // API Endpoints
+
+app.get("/romance/cards", (req, res) => {
+  Cards.find((err, data) => {
+    console.log("hello");
+
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post("/romance/cards", (req, res) => {
+  const dbCard = req.body;
+
+  Cards.create(dbCard, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
+});
+
 app.get("/", (req, res) => {
   res.status(200).send("Hello NodeJs Program");
 });
